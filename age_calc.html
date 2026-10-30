@@ -7,7 +7,8 @@
     <meta property="og:title" content="Age Calculator">
     <meta property="og:type" content="website">
     <title>Age Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="datepicker.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 
@@ -17,15 +18,22 @@
         <div id="container">
             <p>Insert your date of birth here:</p>
 
-            <input type="int" class="dates" placeholder="D"> 
-            <input type="int" class="dates" placeholder="M">
-            <input type="int" class="dates"placeholder="Y">
+            <form target="output">
+                <label for="fday"></label>
+                <input type="int" name="fday" id="fday" class="dates" placeholder="D">
+                <label for="fmonth"></label>
+                <input type="int" name="fmonth" id="fmonth" class="dates" placeholder="M">
+                <label for="fyear"></label>
+                <input type="int" name="fyear" id="fyear" class="dates"placeholder="Y">
+                <input id="calculator" onclick="calculate()" type="submit" value="Submit">
+            </form>
 
-            <button id="calculator" onclick="calculate()">Calculate</button>
-            <output>
-                <p>You've been alive for:</p>
-                <input id="display" readonly>
-            </output>
+            <iframe name="output">
+                <output>
+                    <p>You've been alive for:</p>
+                    <input id="display" readonly>
+                </output>
+            </iframe>
         </div>
     </main>
 
@@ -36,6 +44,6 @@
             </svg>
         </a>
     </footer>
-    <script rel="script" src="index.js"></script>
+    <script rel="script" type="module" src="./src/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,6 @@
+
+# Dependencias de npm
+node_modules/
+
+# Archivos de configuración personal de editores
+.vscode/
