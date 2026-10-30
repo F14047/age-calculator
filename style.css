@@ -6,14 +6,14 @@ body {
 
 #page_title {
     margin: 10px;
-    background-color: gray;
 }
 
 #display {
     font-family: "DSEG7-Classic", monospace;
-    background-color: hsla(138, 58%, 36%, 0.678);
+    background-color: hsla(138, 69%, 27%, 0.678);
     border-radius: 12px;
-    text-shadow: 0 0 8px rgba(255, 51, 51, 0.7); 
+    color: rgb(255, 51, 51);
+    text-shadow: 0 0 8px rgba(184, 32, 32, 0.7); 
     letter-spacing: 2px;
     font-size: 2rem;
     width: 100%;
@@ -29,29 +29,35 @@ p {
 
 .dates {
     height: 30px;
+    width: 30px;
     font-size: 20px;
     padding: 2px;
     margin: 5px;
+    text-align: center;
 }
 
 #calculator {
-    border: solid 1px;
+    cursor: pointer;
+    background-color: rgb(0, 47, 255);
     font-weight: bold;
     font-family: sans-serif;
-    padding: 2px;
-    margin: 5px;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin: 5px;    
+    border: none;
+    border-radius: 15px;
+    user-select: none;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-#mob {
-    width: 30px;
+#calculator:hover {
+    background-color: hsl(0, 0, 50%);
+    filter: brightness(1.2);
 }
 
-#dob {
-    width: 30px;
-}
-
-#yob {
-    width: 50px;
+#calculator:active {
+    background-color: hsl(0, 0, 50%);
+    transform: scale(0.95);
 }
 
 main {
@@ -60,8 +66,6 @@ main {
     margin: 0;
     height: 100vh;
     display: flex;
-    justify-content: center;  /* horizontal */ 
-    align-items: center;      /* vertical */
 }
 
 footer {
