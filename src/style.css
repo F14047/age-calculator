@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#page_title {
+h1 {
     margin: 10px;
 }
 
@@ -23,15 +23,10 @@ body {
     overflow: hidden;
 }
 
-p {
-    margin: 10px 10px 2px 10px;
-}
-
-.dates {
-    height: 30px;
-    width: 30px;
-    font-size: 20px;
-    padding: 2px;
+#birthday {
+    width: 180px;
+    font-size: 1.1rem;
+    padding: 6px;
     margin: 5px;
     text-align: center;
 }
@@ -39,6 +34,7 @@ p {
 #calculator {
     cursor: pointer;
     background-color: rgb(0, 47, 255);
+    color: white;
     font-weight: bold;
     font-family: sans-serif;
     font-size: 1.1rem;
@@ -51,12 +47,12 @@ p {
 }
 
 #calculator:hover {
-    background-color: hsl(0, 0, 50%);
+    background-color: hsl(0, 0%, 50%);
     filter: brightness(1.2);
 }
 
 #calculator:active {
-    background-color: hsl(0, 0, 50%);
+    background-color: hsl(0, 0%, 50%);
     transform: scale(0.95);
 }
 
@@ -64,10 +60,10 @@ main {
     align-items: center;
     justify-content: center;
     margin: 0;
-    height: 100vh;
+    min-height: 70vh;
     display: flex;
 }
 
-footer {
-    align-items: flex-end;
+button {
+    color: white;
 }

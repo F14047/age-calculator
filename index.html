@@ -6,34 +6,25 @@
     <meta name="description" content="Enter your birthday to calculate your age">
     <meta property="og:title" content="Age Calculator">
     <meta property="og:type" content="website">
+    <link rel="stylesheet" href="src/style.css">
     <title>Age Calculator</title>
-    <link rel="stylesheet" href="./src/style.css">
-    <link rel="stylesheet" href="datepicker.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 
 <body>
     <h1>Age Calculator</h1>
     <main>
         <div id="container">
-            <p>Insert your date of birth here:</p>
-
-            <form target="output">
-                <label for="fday"></label>
-                <input type="int" name="fday" id="fday" class="dates" placeholder="D">
-                <label for="fmonth"></label>
-                <input type="int" name="fmonth" id="fmonth" class="dates" placeholder="M">
-                <label for="fyear"></label>
-                <input type="int" name="fyear" id="fyear" class="dates"placeholder="Y">
-                <input id="calculator" onclick="calculate()" type="submit" value="Submit">
+            <form id="age-form" target="output">
+                <label for="birthdate">Insert your date of birth:</label>
+                <input type="text" id="birthday">
+                <button id="calculator" type="submit">Submit</button>
+                <button id="adv-calc" type="button">Precise Calculation</button>
             </form>
 
-            <iframe name="output">
-                <output>
-                    <p>You've been alive for:</p>
-                    <input id="display" readonly>
-                </output>
-            </iframe>
+            <div name="result">
+                <p>You've been alive for:</p>
+                <input id="display" readonly>
+            </div>
         </div>
     </main>
 
@@ -44,6 +35,7 @@
             </svg>
         </a>
     </footer>
-    <script rel="script" type="module" src="./src/index.js"></script>
+    <script type="module" src="/src/index.js"></script>
+    <script src="datepicker.min.js"></script>
 </body>
 </html>
