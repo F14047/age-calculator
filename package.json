@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/F14047/age-calculator#readme",
   "dependencies": {
+    "dseg": "^0.46.0",
     "js-datepicker": "^5.18.4",
     "luxon": "^3.7.2"
   },
