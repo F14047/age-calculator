@@ -4,9 +4,7 @@
   "description": "A calculator that tells you how old you are.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "build": "vite build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,8 +20,5 @@
     "dseg": "^0.46.0",
     "js-datepicker": "^5.18.4",
     "luxon": "^3.7.2"
-  },
-  "devDependencies": {
-    "vite": "^8.3.5"
   }
 }
