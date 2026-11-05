@@ -27,6 +27,8 @@
                 </label>
 
                 <div class="toggle-container">
+                    <label for="birth-time">Time of birth:</label>
+                    <input type="time" id="birth-time">
                     <button id="adv-calc-btn" type="submit">Precise Calculator</button>
                 </div>
                 <div id="submit-container">
@@ -35,7 +37,7 @@
             </form>
 
             <div id="result">
-                <p>You've been alive for:</p>
+                <p id="result-label" hidden>You've been alive for:</p>
                 <input id="display" readonly>
             </div>
         </div>

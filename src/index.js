@@ -1,23 +1,22 @@
-import datepicker from 'js-datepicker';
-import { DateTime } from 'luxon';
-import './style.css';
-import 'js-datepicker/dist/datepicker.min.css';
-
 const { DateTime } = luxon;
 
 const form = document.getElementById("age-form");
 const display = document.getElementById("display");
+const label = document.getElementById("result-label");
 const liveToggle = document.getElementById('adv-calc-toggle');
+const birthTime = document.getElementById('birth-time');
 
 let birthDate = DateTime.now().minus({ years: 18 });
-let timerId = null;
+let activeBirthTime = null;
+let mode = 'clock'; // 'clock' | 'age'
+let intervalId = null;
 
+birthTime.required = liveToggle.checked;
 
 const picker = datepicker('#birthday', {
   // Event callbacks.
   onSelect: (instance, date) => {
     birthDate = date ? DateTime.fromJSDate(date) : null;
-    run();
   },
   
   // Customizations.
@@ -39,26 +38,47 @@ const picker = datepicker('#birthday', {
   showAllDates: true, // Numbers for leading & trailing days outside the current month will show.
 })
 
-const pad = (n) => String(Math.floor(n)).padStart(2, '0');  
+const pad = (n) => String(Math.floor(n)).padStart(2, '0');
 
-function calculate() {
-  const {years, months, days, hours=0, minutes=0} = DateTime.now().diff(birthDate, ['years', 'months', 'days']).toObject();
-  display.value = `${years} : ${months} : ${Math.floor(days)}`;
+function render() {
+  const now = DateTime.now();
+  const precise = liveToggle.checked;
+
+  if (mode === 'clock') {
+    display.value = precise
+      ? now.toFormat('yy : MM : dd : HH : mm : ss')
+      : now.toFormat('yy : MM : dd');
+    return;
+  }
+
+  const units = precise
+    ? ['years', 'months', 'days', 'hours', 'minutes', 'seconds']
+    : ['years', 'months', 'days'];
+  const diff = now.diff(activeBirthTime, units).toObject();
+  display.value = units.map((u) => pad(diff[u])).join(' : ');
 }
 
-function advancedCalculation() {
-  const { years, months, days, hours, minutes, seconds } = DateTime.now().diff(birthDate, 
-    ['years', 'months', 'days', 'hours', 'minutes', 'seconds']).toObject();
-  display.value = [years, months, days, hours, minutes, seconds].map(pad).join(' : ');
+function stop() {
+  clearInterval(intervalId);
+  intervalId = null;
 }
 
-function stopLive() {
-  clearInterval(timerId);
-  timerId = null;
+function start() {
+  stop();
+  render();
+  intervalId = setInterval(render, 250);
 }
 
-function run() {
-  stopLive();
+function showClock() {
+  mode = 'clock';
+  label.hidden = true;
+  start();
+}
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  stop();
+  label.hidden = false;
 
   if (!birthDate) {
     display.value = 'Pick a date.';
@@ -66,18 +86,24 @@ function run() {
   }
 
   if (liveToggle.checked) {
-    advancedCalculation();                  
-    timerId = setInterval(advancedCalculation, 1000); 
+    const [hour, minute] = birthTime.value.split(':').map(Number);
+    activeBirthTime = birthDate.set({ hour, minute, second: 0, millisecond: 0 });
   } else {
-    calculate();
+    activeBirthTime = birthDate.startOf('day');
   }
-}
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); 
-  run();
+  if (activeBirthTime > DateTime.now()) {
+    display.value = "That hasn't happened yet.";
+    return;
+  }
+
+  mode = 'age';
+  start();
 });
 
-liveToggle.addEventListener('change', run);
+liveToggle.addEventListener('change', () => {
+  birthTime.required = liveToggle.checked;
+  showClock();
+});
 
-run();
+showClock();
