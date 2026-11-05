@@ -80,7 +80,8 @@ This project is licensed under the [MIT License](LICENSE).
 ## Acknowledgments
 
 - [roadmap.sh](https://roadmap.sh) for the project idea
-- [Luxon](https://moment.github.io/luxon/) and [Flatpickr](https://flatpickr.js.org/) for their excellent libraries
+- [Luxon](https://moment.github.io/luxon/) and [js-datepicker](https://www.npmjs.com/package/js-datepicker)
+ for their libraries
 
 ## Author
 
